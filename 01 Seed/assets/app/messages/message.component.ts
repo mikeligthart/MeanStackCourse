@@ -1,9 +1,9 @@
 /**
  * Created by Mike on 20-11-2016.
  */
-import {Component, EventEmitter} from '@angular/core';
+import {Component} from '@angular/core';
 import {Message} from "./message.model";
-import {Input, Output} from "@angular/core/src/metadata/directives";
+import {Input} from "@angular/core/src/metadata/directives";
 import {MessageService} from "./message.service";
 
 @Component({
@@ -26,16 +26,18 @@ import {MessageService} from "./message.service";
 })
 export class MessageComponent{
     @Input() message: Message;
-    @Output() editClicked = new EventEmitter<string>();
 
     constructor(private messageService: MessageService){}
 
     onEdit(){
-        this.editClicked.emit('A new value');
+        this.messageService.editMessage(this.message);
     }
 
     onDelete(){
-        this.messageService.deleteMessage(this.message);
+        this.messageService.deleteMessage(this.message)
+            .subscribe(
+                result => console.log(result)
+            );
     }
 
 }
