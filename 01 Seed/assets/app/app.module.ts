@@ -14,8 +14,6 @@ import {LogoutCompoment} from "./auth/logout.component";
 import {SignupComponent} from "./auth/signup.component";
 import {SigninComponent} from "./auth/signin.component";
 
-
-
 @NgModule({
     declarations: [
         AppComponent,
